@@ -1,5 +1,6 @@
 # ERC20 TOKEN DEMO
-This app will show you how to get erc20 tokens that I named "Hereum" or "HRE". You need metamask browser extension installed to run this app, you can get it from [here](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en) Click [here](https://hereum.herokuapp.com/) to test it's functionalities. You can claim HRE in three ways.
+This app will show you how to get erc20 tokens that I named "Hereum" or "HRE". You need metamask browser extension installed to run this app, you can get it from [here](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en)<br>
+Click [here](https://hereum.herokuapp.com/) for live demo. You can claim HRE in three ways.
 * By **clicking the _Get 10 HREs_'** button. That will give you 10 HREs. To see your current HRE click on the **_Get 10 HREs_'** button.
 * By **sending HREs using your metamsk wallet**
 * By **clicking the _Play Peewpeew to gain HREs_**. You can only do that from [Hereum](https://hereum.herokuapp.com/).
