@@ -41,7 +41,7 @@ Before running, make sure to install and configure the [backend](https://github.
 |--client
 |--server
 ```
-If that's right, you can now open two separate terminals (one for backend and one for frontend). If you want to use concurrently, just edit the `package.json` of client or server. If you don't know how, just follow the official (documentation)[https://www.npmjs.com/package/concurrently]. <br>
+If that's right, you can now open two separate terminals (one for backend and one for frontend). If you want to use concurrently, just edit the `package.json` of client or server. If you don't know how, just follow the official [documentation](https://www.npmjs.com/package/concurrently). <br>
 In the first terminal cd to the client directory then type
 ```console
 user@me:~$ npm start
