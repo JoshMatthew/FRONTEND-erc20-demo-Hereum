@@ -21,7 +21,7 @@ class Section2 extends Component {
       showTooltip,
       hideTooltip,
       getConvertedAcc,
-      estHre,
+      hre,
       toolTipShow } = this.props
 
     return (
@@ -30,9 +30,9 @@ class Section2 extends Component {
           <h1>Peewpeew Points</h1>
           <span>
             <h1 className="network text-3xl">
-              {points || isLoading && (
-                <Loader type="BallTriangle" color="#2a4365" height={30} width={30} />
-              )}
+              {isLoading ? (
+                <Loader type="BallTriangle" color="#2a4365" height={45} width={45} />
+              ) : (points)}
             </h1>
           </span>
           <span className="mt-4 flex items-center">
@@ -61,7 +61,7 @@ class Section2 extends Component {
               fontWeight="default"
               padding="5px 8px"
             >
-              <span>{estHre} hre</span>
+              <span>{Math.floor(hre)} hre</span>
             </Tooltip>
           </span>
         </div>

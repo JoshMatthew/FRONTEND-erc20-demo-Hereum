@@ -12,7 +12,8 @@ class Web3ContextProvider extends React.Component {
       account: '',
       network: '',
       tokenBalance: '',
-      MyTokenContract: ''
+      MyTokenContract: '',
+      hasMetamask: true
     }
   }
 
@@ -22,40 +23,46 @@ class Web3ContextProvider extends React.Component {
 
   async initializeWeb3() { // Initializes the current account, network and gets the contract from the backend
     const web3 = await getWeb3() // Requests for metamask connection
-    const accounts = await web3.eth.getAccounts()
-    const network = await web3.eth.net.getNetworkType()
-
-    if (network === 'ropsten') {
-
-      const response = await axios.get("https://hereumapi.herokuapp.com/token/contract")
-      const TokenContract = response.data.hereumContract
-      const networkId = await web3.eth.net.getId()
-
-      const MyTokenContract = await new web3.eth.Contract(
-        TokenContract.abi,
-        TokenContract.networks[networkId].address
-      )
-
-      this.setState({ MyTokenContract })
-    }
-
-    this.setState({
-      account: accounts[0],
-      network
-    })
-
-    // Events when network change
-    window.ethereum.on('chainChanged', async () => {
+    if (web3) {
+      const accounts = await web3.eth.getAccounts()
       const network = await web3.eth.net.getNetworkType()
-      this.setState({ network })
-    })
 
+      if (network === 'ropsten') {
+
+        const response = await axios.get("https://hereumapi.herokuapp.com/token/contract")
+        const TokenContract = response.data.hereumContract
+        const networkId = await web3.eth.net.getId()
+
+        const MyTokenContract = await new web3.eth.Contract(
+          TokenContract.abi,
+          TokenContract.networks[networkId].address
+        )
+
+        this.setState({ MyTokenContract })
+      }
+
+      this.setState({
+        account: accounts[0],
+        network
+      })
+
+      // Events when network change
+      window.ethereum.on('chainChanged', async () => {
+        const network = await web3.eth.net.getNetworkType()
+        this.setState({ network })
+      })
+    } else {
+      this.setState({ hasMetamask: false })
+    }
   }
 
   getHre = async (amount) => { // executes the erc20 contract's method to get us tokens
-    const { MyTokenContract, account } = this.state
-
-    await MyTokenContract.methods.getToken(amount).send({ from: account })
+    try {
+      const { MyTokenContract, account } = this.state
+      return await MyTokenContract.methods.getToken(amount).send({ from: account })
+    } catch (err) {
+      return err
+    }
   }
 
   render() {

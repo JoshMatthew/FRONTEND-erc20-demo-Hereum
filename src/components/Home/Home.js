@@ -11,8 +11,8 @@ class Home extends React.Component {
     this.state = {
       toolTipShow: false, // The variable used to know if tooltip is on or off
       points: 'none', // Points gathered after playing peewpeew
-      isLoading: false,
-      estHre: 0 // Estimated HRE
+      hre: 0,
+      isLoading: false
     }
 
     this.showTooltip = this.showTooltip.bind(this)
@@ -35,12 +35,14 @@ class Home extends React.Component {
 
   async getCurrentPoints(acc) { // Request the current available points for this user
     let data = 'none'
+    let hre = 0
     this.setState({ isLoading: true })
     let res = await axios.get(`https://hereumapi.herokuapp.com/peewpeew/points/${acc}/no`)
     if (res.data.point.points !== 0) {
       data = res.data.point.points
+      hre = res.data.hre
     }
-    this.setState({ isLoading: false, points: data, estHre: (Math.floor(data / 100)) })
+    this.setState({ isLoading: false, points: data, hre })
   }
 
   async addTokenToWallet() { // Ask user to use the current token provided by the dApp
@@ -68,16 +70,17 @@ class Home extends React.Component {
 
         const getConvertedAcc = async () => { // Get the amount of hre from the server that varries from the points
           if (this.state.points !== 'none') { // If there's no points, don't execute
-            let hre = 0
             let data = 'none'
-            this.setState({ isLoading: true })
-            let res = await axios.get(`https://hereumapi.herokuapp.com/peewpeew/points/${context.account}/yes`)
-            if (res.data.point.points !== 0) {
-              hre = Math.floor(res.data.hre)
-              data = res.data.point.points
+
+            const res = await context.getHre(Math.floor(this.state.hre))
+            if (!res.code) {
+              this.setState({ isLoading: true })
+              let res = await axios.get(`https://hereumapi.herokuapp.com/peewpeew/points/${context.account}/yes`)
+              if (res.data.point.points !== 0) {
+                data = res.data.point.points
+              }
+              this.setState({ isLoading: false, points: 'none', hre: 0 })
             }
-            this.setState({ isLoading: false, points: 'none', estHre: 0 })
-            context.getHre(hre)
           }
         }
 
@@ -95,7 +98,7 @@ class Home extends React.Component {
               showTooltip={this.showTooltip}
               hideTooltip={this.hideTooltip}
               getConvertedAcc={getConvertedAcc}
-              estHre={this.state.estHre}
+              hre={this.state.hre}
               toolTipShow={this.state.toolTipShow}
             />
           </div>
