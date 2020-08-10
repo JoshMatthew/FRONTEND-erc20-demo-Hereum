@@ -6,7 +6,7 @@ Click [here](https://hereum.herokuapp.com/) for live demo. You can claim HRE in 
 * By **clicking the _Play Peewpeew to gain HREs_**. You can only do that from [Hereum](https://hereum.herokuapp.com/).
 
 ## Installation
-If somehow you want to download this as a guide, you can. This app also uses a [backend](https://github.com/JoshMatthew/API-erc20-demo-Hereum-) which have a different repo. You can check the guide on how to install the backend as well by going [here](https://github.com/JoshMatthew/API-erc20-demo-Hereum-).
+If somehow you want to download this as a guide, you can. This app also uses a [backend](https://github.com/JoshMatthew/BACKEND-erc20-demo-Hereum) which have a different repo. You can check the guide on how to install the backend as well by going [here](https://github.com/JoshMatthew/BACKEND-erc20-demo-Hereum).
 
 ### 1. Set up file structure
 Make a new directory by going in to your command line and typing
@@ -35,7 +35,7 @@ user@me:~$ npm install
 Wait for it to finish.
 
 ### 3. Run the app
-Before running, make sure to install and configure the [backend](https://github.com/JoshMatthew/API-erc20-demo-Hereum-) first. After you finish it you should now have a file structure that looks like this
+Before running, make sure to install and configure the [backend](https://github.com/JoshMatthew/BACKEND-erc20-demo-Hereum) first. After you finish it you should now have a file structure that looks like this
 ```
 -erc20demo
 |--client
