@@ -26,7 +26,7 @@ user@me:~$ git init
 ```
 Once that's done, we can now clone this repo by
 ```console
-user@me:~$ git clone https://github.com/JoshMatthew/CLIENT-erc20-hereum.git
+user@me:~$ git clone https://github.com/JoshMatthew/FRONTEND-erc20-demo-Hereum.git
 ```
 Once it's done, you can now install the dependencies by doing
 ```console
