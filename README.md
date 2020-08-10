@@ -52,5 +52,5 @@ user@me:~$ npm run dev
 ```
 
 ### Hooray! :blue_heart:
-You're done! If you did it right you should now be able to visit (http://localhost:3000)[http://localhost:3000] 
+You're done! If you did it right you should now be able to visit [http://localhost:3000](http://localhost:3000) 
 
